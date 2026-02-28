@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>মোহনার জন্য একটি কথা</title>
+  <style>
+    /* ===== COLOR VARIABLES – 12+ soft pastels ===== */
+    :root {
+      --bg-1: #ffe9f0;
+      --bg-2: #ffded0;
+      --bg-3: #fde0e7;
+      --bg-4: #f8dae9;
+      --glass-base: rgba(255, 245, 245, 0.45);
+      --glass-border: rgba(255, 230, 240, 0.7);
+      --text-soft: #3b2b32;
+      --heart-1: #f25f7c;
+      --heart-2: #f8819e;
+      --heart-3: #f8a5b2;
+      --heart-4: #fbb1c2;
+      --heart-5: #fec8d8;
+      --heart-6: #ffb3ba;
+      --heart-7: #ffd1dc;
+      --heart-8: #fac0cd;
+      --heart-9: #fcc9d3;
+      --heart-10: #fadadd;
+      --heart-11: #f9b8d0;
+      --heart-12: #f7a9c5;
+      --btn-yes-base: #ffc1cc;
+      --btn-no-base: #d9c4cb;
+      --shadow-pink: rgba(255, 140, 170, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23f25f7c" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-soft);
+      padding: 16px;
+      margin: 0;
+      -webkit-tap-highlight-color: transparent;
+      background: linear-gradient(45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
+      background-size: 300% 300%;
+      animation: breathGradient 18s ease infinite;
+    }
+
+    @keyframes breathGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* glass card – with soft transition */
+    .glass-card {
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      background: var(--glass-base);
+      backdrop-filter: blur(18px) saturate(200%);
+      -webkit-backdrop-filter: blur(18px) saturate(200%);
+      border-radius: 42px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 50px var(--shadow-pink), 0 0 0 1.5px rgba(255, 255, 255, 0.7) inset;
+      padding: 30px 22px;
+      transition: box-shadow 0.4s ease, transform 0.2s ease;
+    }
+
+    .glass-card:hover {
+      box-shadow: 0 35px 60px rgba(255, 150, 180, 0.25);
+    }
+
+    /* screens */
+    .screen {
+      display: none;
+      opacity: 0;
+    }
+
+    .screen.active {
+      display: block;
+      animation: gentleSlide 0.7s cubic-bezier(0.15, 0.9, 0.25, 1) forwards;
+    }
+
+    @keyframes gentleSlide {
+      0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Bangla typography with emoji warmth */
+    .message p {
+      font-size: 1.25rem;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+      font-weight: 380;
+      word-break: break-word;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.4);
+    }
+
+    .message p:first-child {
+      font-size: 1.5rem;
+      font-weight: 430;
+      margin-bottom: 0.5rem;
+    }
+
+    .question {
+      margin-top: 1.8rem;
+      font-size: 1.5rem !important;
+      font-weight: 460;
+      color: #552e38;
+      background: rgba(255, 235, 240, 0.5);
+      padding: 18px 20px;
+      border-radius: 56px;
+      text-align: center;
+      border: 1px solid rgba(255, 220, 230, 0.9);
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+      animation: softPulse 4s infinite;
+    }
+
+    @keyframes softPulse {
+      0% { background: rgba(255, 235, 240, 0.5); }
+      50% { background: rgba(255, 220, 235, 0.6); }
+      100% { background: rgba(255, 235, 240, 0.5); }
+    }
+
+    /* BUTTON container (playground) */
+    .button-container {
+      position: relative;
+      width: 280px;
+      height: 110px;
+      margin: 36px auto 10px;
+      border-radius: 60px;
+      background: rgba(255, 230, 235, 0.3);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 200, 215, 0.6);
+    }
+
+    .btn {
+      position: absolute;
+      width: 120px;
+      padding: 16px 0;
+      border: none;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      font-weight: 450;
+      font-family: inherit;
+      letter-spacing: 0.5px;
+      background: rgba(255, 250, 250, 0.8);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 20px rgba(240, 150, 170, 0.2), 0 2px 4px rgba(0,0,0,0.02);
+      transition: left 0.25s ease, top 0.25s ease, transform 0.2s ease, box-shadow 0.2s;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      color: #442b32;
+    }
+
+    .yes-btn {
+      left: 0px;
+      top: 20px;
+      background: rgba(255, 220, 230, 0.9);
+      color: #4d2e3a;
+      border: 1px solid #ffe3ec;
+    }
+
+    .no-btn {
+      left: 160px;
+      top: 20px;
+      background: rgba(240, 215, 220, 0.85);
+      color: #5f4d54;
+      border: 1px solid #ffdae3;
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.02);
+      background: #ffccd8;
+      box-shadow: 0 12px 24px rgba(250, 130, 160, 0.3);
+    }
+
+    .yes-btn:active {
+      transform: scale(0.96);
+      background: #fdc1cf;
+    }
+
+    .no-btn:active {
+      /* no scale, just move */
+    }
+
+    /* second screen text */
+    .screen-2-message {
+      text-align: left;
+      padding: 10px 6px;
+    }
+
+    .screen-2-message p {
+      font-size: 1.25rem;
+      margin-bottom: 1.6rem;
+    }
+
+    /* hearts container */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      bottom: 0;
+      font-size: 2rem;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 0 8px #ffb6c1);
+      user-select: none;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 0.4; }
+      50% { opacity: 1; transform: translateY(-45vh) scale(1.2); }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+
+    /* responsiveness */
+    @media (max-width: 360px) {
+      .glass-card { padding: 24px 16px; }
+      .button-container { width: 260px; }
+      .btn { width: 110px; font-size: 1.5rem; }
+      .no-btn { left: 150px; }
+    }
+
+    /* small details */
+    .btn:focus-visible { outline: 2px solid #faa6b6; }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <main class="glass-card">
+    <!-- screen 1 – প্রথম বলা + emojis -->
+    <div id="screen1" class="screen active">
+      <div class="message">
+        <p>মোহনা 🌸</p>
+        <p>অনেক দিন ধরে একটা কথা মনেই চেপে রেখেছিলাম। তোমার পাশে থাকলে সময় যেন থমকে যায়—আলতো, নরম, শান্তি 🕊️। সত্যি করে বলছি, তুমি এলে বাকি সব ফিকে হয়ে যায়।</p>
+        <p>আজ খুব সোজা করে জিজ্ঞেস করছি, কোনো নাটক ছাড়া ✨</p>
+        <div class="question">আমি কি তোমার পাশে একটু সময় কাটাতে পারি? 🫶</div>
+      </div>
+
+      <div class="button-container" id="btnContainer">
+        <button class="btn yes-btn" id="yesBtn">হ্যাঁ 💖</button>
+        <button class="btn no-btn" id="noBtn">না 🤍</button>
+      </div>
+      <div style="text-align: center; margin-top: 12px; font-size: 0.9rem; opacity: 0.6; color: #5f4d54;">( কোনো তাড়া নেই )</div>
+    </div>
+
+    <!-- screen 2 – হ্যাঁ-এর পর + emoji -->
+    <div id="screen2" class="screen">
+      <div class="message screen-2-message">
+        <p>মোহনা 🌼</p>
+        <p>শুধু এই মুহূর্তে তুমি 'হ্যাঁ' বলেছ—এটাই আমার জন্য অনেক বড়। আমি জানি না সামনে কী হয়, কিন্তু এটুকু বলতে পারি: তোমার পাশে থাকলে আমি আরও যত্নবান হতে চাই, আরও সৎ ও শ্রদ্ধাপূর্ণ।</p>
+        <p>ভালোবাসা মানে শুধু অনুভূতি নয়, বরং বিশ্বাস আর নিরাপত্তা 🌱। আমি তোমাকে সেটাই দিতে চাই।</p>
+        <p style="margin-top: 2rem; opacity: 0.8; font-size: 1.1rem;">তুমি এখানে আছ বলেই আজকের আলাদা লাগে 💫</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      const screen1 = document.getElementById('screen1');
+      const screen2 = document.getElementById('screen2');
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+      const btnContainer = document.getElementById('btnContainer');
+      const heartsContainer = document.getElementById('heartsContainer');
+
+      // 12+ pastel heart colors
+      const heartColors = [
+        '#f25f7c', '#f8819e', '#f8a5b2', '#fbb1c2', '#fec8d8',
+        '#ffb3ba', '#ffd1dc', '#fac0cd', '#fcc9d3', '#fadadd',
+        '#f9b8d0', '#f7a9c5', '#fc9eb3', '#ffc2d0', '#fda5b0'
+      ];
+
+      function setInitialBtnPositions() {
+        yesBtn.style.left = '0px';
+        yesBtn.style.top = '20px';
+        noBtn.style.left = '160px';
+        noBtn.style.top = '20px';
+        noBtn.style.transition = 'left 0.25s ease, top 0.25s ease';
+      }
+      setInitialBtnPositions();
+
+      // move NO button randomly inside container
+      function moveNoButton() {
+        const container = btnContainer;
+        const btn = noBtn;
+        if (!container || !btn) return;
+
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        const btnWidth = btn.offsetWidth;
+        const btnHeight = btn.offsetHeight;
+
+        let maxLeft = Math.max(0, containerWidth - btnWidth);
+        let maxTop = Math.max(0, containerHeight - btnHeight);
+
+        let newLeft = Math.random() * maxLeft;
+        let newTop = Math.random() * maxTop;
+
+        newLeft = Math.min(maxLeft, Math.max(0, newLeft));
+        newTop = Math.min(maxTop, Math.max(0, newTop));
+
+        btn.style.left = newLeft + 'px';
+        btn.style.top = newTop + 'px';
+      }
+
+      // prevent NO click/tap
+      noBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        moveNoButton();
+        return false;
+      });
+
+      noBtn.addEventListener('mouseenter', moveNoButton);
+      noBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        moveNoButton();
+      }, { passive: false });
+
+      noBtn.addEventListener('touchend', (e) => e.preventDefault());
+      noBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+      // mousemove slight random (playful)
+      noBtn.addEventListener('mousemove', () => {
+        if (Math.random() < 0.03) moveNoButton();
+      });
+
+      // YES click handler
+      yesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        screen1.classList.remove('active');
+        screen2.classList.add('active');
+        startFloatingHearts();
+      });
+
+      // floating hearts with random colors
+      let heartsInterval = null;
+      function startFloatingHearts() {
+        if (heartsInterval) return;
+        heartsInterval = setInterval(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart-float';
+          const size = 1.2 + Math.random() * 2.2;
+          heart.style.fontSize = size + 'rem';
+          heart.style.left = (8 + Math.random() * 84) + '%';
+          heart.style.animationDuration = (3.5 + Math.random() * 4.5) + 's';
+          heart.style.opacity = 0.4 + Math.random() * 0.6;
+          // pick random color from array
+          const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+          heart.style.color = randomColor;
+          heart.innerHTML = '❤️';
+          heartsContainer.appendChild(heart);
+
+          heart.addEventListener('animationend', () => heart.remove());
+        }, 240);
+      }
+
+      window.addEventListener('beforeunload', () => {
+        if (heartsInterval) clearInterval(heartsInterval);
+      });
+
+      // reposition NO on resize
+      window.addEventListener('resize', () => {
+        const container = btnContainer;
+        const btn = noBtn;
+        if (!container || !btn) return;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        const btnWidth = btn.offsetWidth;
+        const btnHeight = btn.offsetHeight;
+        let currentLeft = parseFloat(btn.style.left);
+        let currentTop = parseFloat(btn.style.top);
+        if (isNaN(currentLeft)) currentLeft = 160;
+        if (isNaN(currentTop)) currentTop = 20;
+
+        const maxLeft = Math.max(0, containerWidth - btnWidth);
+        const maxTop = Math.max(0, containerHeight - btnHeight);
+        let newLeft = Math.min(maxLeft, Math.max(0, currentLeft));
+        let newTop = Math.min(maxTop, Math.max(0, currentTop));
+
+        btn.style.left = newLeft + 'px';
+        btn.style.top = newTop + 'px';
+      });
+
+      // orientation change: re-randomize a bit
+      window.addEventListener('orientationchange', () => {
+        setTimeout(moveNoButton, 60);
+      });
+
+      // extra: small transition on card (soft)
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600&display=swap" rel="stylesheet">
+</body>
+</html>
